@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h> //biblioteca que chama o system("cls");
-#include <conio.h> //uso da função rand
+#include <conio.h> //uso da funÃ§Ã£o rand
 
 int pontUser, pontPC,contSOS,contSouO;//contadores
 
@@ -9,17 +9,17 @@ int** alocarMat(){
     pontUser = 0, pontPC = 0,contSOS=0,contSouO=0;//zerando contadores
     int i,j;
 
-    int **m = (int**)malloc(3 * sizeof(int*));//definindo três linhas para a matriz
+    int **m = (int**)malloc(3 * sizeof(int*));//definindo trÃªs linhas para a matriz
 
     for (i = 0; i < 3; i++){
         m[i] = (int*) malloc(11 * sizeof(int));//definindo 11 colunas para a matriz
-        for (j = 0; j < 11; j++) m[i][j] = ' ';//preenchendo-a cada coluna com espaço
+        for (j = 0; j < 11; j++) m[i][j] = ' ';//preenchendo-a cada coluna com espaÃ§o
     }
     m[0][3]='|',m[0][7]='|',m[1][3]='|',m[1][7]='|',m[2][3]='|',m[2][7]='|'; //colocando as barras nos seus lugares
     return m; //Retorna o Ponteiro para a Matriz
 
     //desenho da matriz
-    /*  - significa espaço
+    /*  - significa espaÃ§o
              ---|---|---
              ---|---|---
              ---|---|---
@@ -30,7 +30,7 @@ int** alocarMat(){
     */
 }
 
-//função para indicar a coluna correta, já que não temos uma matriz 3x3, mas 3x11.
+//funÃ§Ã£o para indicar a coluna correta, jÃ¡ que nÃ£o temos uma matriz 3x3, mas 3x11.
 int indice(int y){
     if (y==3) y=9;
     else if(y==2) y=5;
@@ -38,7 +38,7 @@ int indice(int y){
 }
 
 void UpPont(int cond,int* vet,int** m){
-    contSouO++;//contador para ver a quantidade de elemtos já foram jogados
+    contSouO++;//contador para ver a quantidade de elemtos jÃ¡ foram jogados
 
     int cont=0;//contador local
 
@@ -54,15 +54,15 @@ void UpPont(int cond,int* vet,int** m){
     if(m[0][1]=='S' && m[1][5]=='O' &&  m[2][9]=='S' && vet[6]) cont++,vet[6]=0,contSOS++;
     if(m[0][9]=='S' && m[1][5]=='O' &&  m[2][1]=='S' && vet[7]) cont++,vet[7]=0,contSOS++;
 
-    if(cond) pontUser+=cont;//se cond igual a 1, a pontuação acumulada em cont, acumula em pontUser
-    else pontPC+=cont; // se não, em pontPC
+    if(cond) pontUser+=cont;//se cond igual a 1, a pontuaÃ§Ã£o acumulada em cont, acumula em pontUser
+    else pontPC+=cont; // se nÃ£o, em pontPC
 
 }
 
 
 
-/* a função JogaPC, sempre busca fazer uma jogada para impedir que o jogador faça SOS,
-ela sempre busca jogar aos lados da posição jogada pelo Usuário*/
+/* a funÃ§Ã£o JogaPC, sempre busca fazer uma jogada para impedir que o jogador faÃ§a SOS,
+ela sempre busca jogar aos lados da posiÃ§Ã£o jogada pelo UsuÃ¡rio*/
 void JogaPC(int x,int y,int** m){
         int a= rand() % 3;
         int t[3]={1,5,9};
@@ -96,7 +96,7 @@ void imprimirTab(int** m){
         if(i!=2) printf("\n---+---+---\n");
     }
 
-    printf("\nPlacar: Usuario %d x %d Computador\n",pontUser,pontPC);//pontuação
+    printf("\nPlacar: Usuario %d x %d Computador\n",pontUser,pontPC);//pontuaÃ§Ã£o
 }
 
 
@@ -105,7 +105,7 @@ int main(){
     int** m=alocarMat();//inicializando Matriz
     int i,j;
     int* vet =(int*) malloc(sizeof(int)*8);//vetor de possibilidade de SOS, 3 na horizontal, 3 a vertical, 2 na diagonal
-    for(i=0;i<8;i++) vet[i]=1;//colocando 1 para todas as posições, significa que não ninguém fez SOS nessa posição
+    for(i=0;i<8;i++) vet[i]=1;//colocando 1 para todas as posiÃ§Ãµes, significa que nÃ£o ninguÃ©m fez SOS nessa posiÃ§Ã£o
 
     printf("*** Bem-vindo(a) ao Jogo do SOS! ***\n");
     int n;
@@ -153,23 +153,23 @@ int main(){
 
             //resultado da partida
             if(pontUser==pontPC) printf("!!!!!!!Empate!!!!!!!\n");
-            else if(pontUser>pontPC) printf("!!!!!!!Você ganhou!!!!!!!\n");
+            else if(pontUser>pontPC) printf("!!!!!!!VocÃª ganhou!!!!!!!\n");
             else printf("!!!!!!!O computador ganhou!!!!!!!\n");
 
             int x;
             printf("Digite 1 para reiniciar o jogo: ");
             scanf("%d",&x);
             if(x){
-                //liberando espaço de memória
+                //liberando espaÃ§o de memÃ³ria
                 free(m);
                 free(vet);
-                //alocando espaço de memória
+                //alocando espaÃ§o de memÃ³ria
                 m=alocarMat();
                 vet =(int*) malloc(sizeof(int)*8);
                 system("cls");
                 imprimirTab(m);
 
-                if(n==2)//se o usuário escolheu que o computador comece jogando
+                if(n==2)//se o usuÃ¡rio escolheu que o computador comece jogando
                     comecaPC(m), UpPont(0,vet,m);
             }else break;
         }
