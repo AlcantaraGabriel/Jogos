@@ -63,7 +63,7 @@ void UpPont(int cond,int* vet,int** m){
 
 /* a função JogaPC, sempre busca fazer uma jogada para impedir que o jogador faça SOS,
 ela sempre busca jogar aos lados da posição jogada pelo Usuário*/
-void JogaPC(int x,int y,int** m){
+void JogaPC(int** m){
         int a= rand() % 3;
         int t[3]={1,5,9};
         int b = rand() % 3;
@@ -76,14 +76,6 @@ void JogaPC(int x,int y,int** m){
 
         int ch[2]={'S','O'};
         m[a][t[b]]=ch[rand()%2];
-
-}
-
-void comecaPC(int** m){
-    int a= rand() % 3;
-    int t[3]={1,5,9};
-    int b = rand() % 3;
-    m[a][t[b]] = 'S';
 
 }
 
@@ -115,7 +107,7 @@ int main(){
     printf("Digite 1 se voce deseja comecar, ou 2 caso contrario: ");
     scanf("%d",&n);
     if(n==2){
-        comecaPC(m);
+        JogaPC(m);
         UpPont(0,vet,m);
     }
 
@@ -144,7 +136,7 @@ int main(){
 
         UpPont(1,vet,m);
 
-        JogaPC(a,b,m);
+        JogaPC(m);
         UpPont(0,vet,m);
 
          if((contSouO==9 && n==2)|| (contSouO==10 && n==1)){
@@ -170,7 +162,7 @@ int main(){
                 imprimirTab(m);
 
                 if(n==2)//se o usuário escolheu que o computador comece jogando
-                    comecaPC(m), UpPont(0,vet,m);
+                    JogaPC(m), UpPont(0,vet,m);
             }else break;
         }
 
