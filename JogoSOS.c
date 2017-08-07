@@ -121,14 +121,21 @@ int main(){
         scanf("%c",&c);//leitura da quebra de linha
         scanf("%c",&c);//leitura do caractere
 
-
-
-
         int a,b;
         printf("Digite a linha: ");
         scanf("%d",&a);
         printf("Digite a coluna: ");
         scanf("%d",&b);
+        
+         //caso o usuário digite uma posição inválida
+        while((a<1 || a>3) || (b<1 || b>3)){
+            printf("Posicao invalida!\n\n");
+            printf("Digite a linha: ");
+            scanf("%d",&a);
+            printf("Digite a coluna: ");
+            scanf("%d",&b);
+        }
+        
         a = a-1;//linha
         b =indice(b);//coluna
 
