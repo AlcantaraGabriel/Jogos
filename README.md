@@ -1,3 +1,3 @@
 # Jogos
 
-SOS game
+SOS game, without graphical interface.
