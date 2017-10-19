@@ -1,3 +1,5 @@
+//Autor: Gabriel Alcântara Silva
+
 #include <stdio.h>
 #include <stdlib.h> //biblioteca que chama o system("cls");
 #include <conio.h> //uso da função rand
